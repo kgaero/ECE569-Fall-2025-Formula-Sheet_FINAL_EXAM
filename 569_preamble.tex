@@ -1,0 +1,415 @@
+\documentclass[9pt,a4paper]{article}
+\usepackage[margin=8mm]{geometry}
+\usepackage[fleqn]{amsmath}        % left-align display math
+\usepackage{amssymb,mathtools,bm}
+\usepackage{multicol}
+\usepackage{graphicx}
+\usepackage[final]{microtype}
+
+% --- global (keep as-is) ---
+\setlength{\parindent}{0pt}
+\setlength{\columnsep}{5mm}
+\setlength{\multicolsep}{0.5pt}
+\setlength{\abovedisplayskip}{0.5pt}
+\setlength{\belowdisplayskip}{0.5pt}
+\setlength{\abovedisplayshortskip}{0.5pt}
+\setlength{\belowdisplayshortskip}{0.5pt}
+\setlength{\arraycolsep}{1pt}
+\setlength{\mathindent}{0pt}
+\setlength{\jot}{0.5pt}
+\linespread{0.90}
+\renewcommand{\arraystretch}{0.90}
+\setlength{\fboxsep}{1.2pt}
+\setlength{\fboxrule}{0.25pt}
+
+\allowdisplaybreaks
+\pagestyle{empty}
+
+\begin{document}\scriptsize
+\begin{multicols}{2}
+
+% ===== LEFT COLUMN =====
+\begingroup
+\linespread{0.82}\selectfont
+\setlength{\abovedisplayskip}{0.20pt}
+\setlength{\belowdisplayskip}{0.20pt}
+\setlength{\abovedisplayshortskip}{0.20pt}
+\setlength{\belowdisplayshortskip}{0.20pt}
+\setlength{\jot}{0.20pt}
+\renewcommand{\arraystretch}{0.86}
+
+{\large\textbf{Symbols}}
+\vspace{2pt}\noindent\rule{\columnwidth}{0.25pt}\vspace{2pt}
+
+\textbf{Linear transformation (linearity)}
+\[
+\boxed{\ T(x+y)=T(x)+T(y),\qquad T(cx)=c\,T(x)\ }.
+\]
+
+\textbf{Inner product (axioms)}
+\[
+\boxed{\ \langle a x+b y,\, z\rangle=a\langle x,z\rangle+b\langle y,z\rangle,\quad
+\langle x,y\rangle=\langle y,x\rangle,\quad
+\langle x,x\rangle>0\ \text{ if }x\neq 0\ }.
+\]
+
+\textbf{Norm (axioms)}
+\[
+\boxed{\ \|x\|\ge 0,\quad \|x\|=0\iff x=0,\quad \|c\,x\|=|c|\,\|x\|,\quad \|x+y\|\le \|x\|+\|y\|\ }.
+\]
+
+\textbf{Matrix inverse (2$\times$2)}
+\[
+\boxed{\ \begin{bmatrix}a&b\\ c&d\end{bmatrix}^{-1}
+=\frac{1}{ad-bc}\begin{bmatrix}d&-b\\ -c& a\end{bmatrix}\ }.
+\]
+
+\textbf{Orthogonal (2$\times$2)}
+\[
+\boxed{\ Q^{\top}Q = I_{2\times2} = QQ^{\top}\ }.
+\]
+
+\textbf{Matrix exponential / LTI solution}
+\[
+\boxed{\ \dot x(t)=A\,x(t)\ },\qquad
+\boxed{\ x(t)=e^{At}x_0\ }.
+\]
+\[
+\boxed{\ e^{At}=I+At+\frac{(At)^2}{2!}+\frac{(At)^3}{3!}+\cdots\ }
+\]
+\[
+\boxed{\ \text{If }S\in\mathbb{R}^{n\times n}\text{ is nonsingular, then } e^{\,S^{-1}AS}=S^{-1}e^{A}S\ }.
+\]
+\[
+\boxed{\ \cos x = 1 - \frac{x^{2}}{2!} + \frac{x^{4}}{4!} - \frac{x^{6}}{6!} + \cdots\ }
+\]
+\[
+\boxed{\ \sin x = x - \frac{x^{3}}{3!} + \frac{x^{5}}{5!} - \frac{x^{7}}{7!} + \cdots\ }
+\]
+
+% --- Joints and mobility/DOF (above SO(3)) ---
+\begingroup
+\setlength{\tabcolsep}{1.2pt}
+\renewcommand{\arraystretch}{0.86}
+\tiny
+\resizebox{\linewidth}{!}{%
+\begin{tabular}{|l|c|c|c|}
+\hline
+\multicolumn{1}{|c|}{\textbf{Joint type}} & \textbf{dof $f$} &
+\multicolumn{1}{c|}{\begin{tabular}{c}\textbf{Constraints $c$}\\ \textbf{between two}\\ \textbf{planar}\\ \textbf{rigid bodies}\end{tabular}} &
+\multicolumn{1}{c|}{\begin{tabular}{c}\textbf{Constraints $c$}\\ \textbf{between two}\\ \textbf{spatial}\\ \textbf{rigid bodies}\end{tabular}}\\
+\hline
+Revolute (R)   & 1 & 2   & 5\\
+Prismatic (P)  & 1 & 2   & 5\\
+Helical (H)    & 1 & N/A & 5\\
+Cylindrical (C)& 2 & N/A & 4\\
+Universal (U)  & 2 & N/A & 4\\
+Spherical (S)  & 3 & N/A & 3\\
+\hline
+\end{tabular}}
+\endgroup
+\vspace{1pt}
+
+\[
+\boxed{\ \mathrm{dof}=m\,(N-1-J)+\sum_{i=1}^{J} f_i\ }.
+\]
+
+\[
+\resizebox{\linewidth}{!}{$
+\boxed{\ \text{Dof $(m)$ of rigid body in $n$-D}=\tfrac{n(n+1)}{2},\quad
+\text{Translational dof}=n,\quad
+\text{Rotational dof}=\tfrac{n(n-1)}{2}\ }
+$}
+\]
+
+% --- Pfaffian constraint (added) ---
+\textbf{Pfaffian constraint}
+\[
+\boxed{\ A(q)\,\dot q = 0,\ \ A\!\in\!\mathbb{R}^{m\times n},\ \dot q\!\in\!\mathbb{R}^{n\times 1}\ }.
+\]
+\[
+\boxed{\ \operatorname{rank}(A)=\text{number of independent constraints}\ }.
+\]
+
+% line before SO(3)
+\vspace{2pt}\noindent\rule{\columnwidth}{0.25pt}\vspace{2pt}
+\textbf{SO(3): rotations}
+\[
+\boxed{\ R\!\in\!SO(3),\ \omega\!\in\!\mathbb{R}^3,\ [\omega]_\times=\hat\omega,\quad
+\xi=(\omega,v)\!\in\!\mathbb{R}^6,\quad
+\hat\xi=\!\begin{bmatrix}[\omega]_\times & v\\ 0 & 0\end{bmatrix},\quad
+T=\!\begin{bmatrix}R & p\\ 0 & 1\end{bmatrix}\ }.
+\]
+Throughout, \([\omega]_\times x=\omega\times x\).
+\[
+\boxed{\ SO(3)=\{R\!\in\!\mathbb{R}^{3\times3}\mid R^TR=I,\ \det R=+1\},\quad R^{-1}=R^T\ }.
+\]
+\[
+\boxed{\ \|Rp-Rq\|=\|p-q\|\ \ \forall\,p,q\in\mathbb{R}^3\ }.
+\]
+\[
+\boxed{\ R(u\times w)=(Ru)\times(Rw)\ \ \forall\,u,w\in\mathbb{R}^3\ }.
+\]
+\[
+\boxed{\ R\,[\omega]_\times\,R^{\!T}=\,[\,R\omega\,]_\times\ }.
+\]
+
+\textbf{Euler angles (intrinsic ZYX / yaw–pitch–roll)}
+\[
+\boxed{\ R(\theta,\phi,\psi)=R_z(\psi)\,R_y(\phi)\,R_x(\theta)\ }.
+\]
+\[
+\resizebox{\linewidth}{!}{$
+\begin{bmatrix}
+c_\psi c_\phi & c_\psi s_\phi s_\theta - s_\psi c_\theta & c_\psi s_\phi c_\theta + s_\psi s_\theta\\
+s_\psi c_\phi & s_\psi s_\phi s_\theta + c_\psi c_\theta & s_\psi s_\phi c_\theta - c_\psi s_\theta\\
+-s_\phi & c_\phi s_\theta & c_\phi c_\theta
+\end{bmatrix}$}
+\]
+\[
+\boxed{\ c(\cdot)=\cos(\cdot),\quad s(\cdot)=\sin(\cdot)\ }.
+\]
+
+\textit{Skew (hat) map}
+\[
+\boxed{\ [\omega]_\times=\!\begin{bmatrix}0&-\omega_3&\omega_2\\ \omega_3&0&-\omega_1\\ -\omega_2&\omega_1&0\end{bmatrix},\quad
+[\omega]_\times^2=\omega\omega^T-\|\omega\|^2I,\quad
+[\omega]_\times^3=-\|\omega\|^2[\omega]_\times\ }.
+\]
+
+\textit{Angular velocity \& recovery}
+\[
+\boxed{\ \dot R_{sb}=[\omega_s]_\times\,R_{sb}},\qquad
+\boxed{\ \dot R_{sb}=R_{sb}[\omega_b]_\times\ }.
+\]
+\[
+\boxed{\ [\omega_s]_\times=\dot R_{sb}\,R_{sb}^{\!T}\ },\qquad
+\boxed{\ [\omega_b]_\times=R_{sb}^{\!T}\dot R_{sb}\ }.
+\]
+\[
+\boxed{\ \omega_s = R_{sb}\,\omega_b\ }.
+\]
+\[
+\boxed{\ [\xi_b]_\times \;=\; T_{sb}^{-1}\dot T_{sb}\ },\qquad
+\boxed{\ [\xi_s]_\times \;=\; \dot T_{sb}\,T_{sb}^{-1}\ },\qquad
+\boxed{\ [\xi_s]_\times \;=\; \big[\mathrm{Ad}_{T_{sb}}\big]\,[\xi_b]_\times\ }.
+\]
+\textit{Body vs spatial twist:}\quad
+\[
+\boxed{\ \dot T_{sb}=T_{sb}\,\hat\xi_b=\hat\xi_s\,T_{sb}\ },\qquad
+\boxed{\ \xi_s=\mathrm{Ad}_{T_{sb}}\,\xi_b\ }.
+\]
+
+% line before SE(3)
+\vspace{2pt}\noindent\rule{\columnwidth}{0.25pt}\vspace{2pt}
+\textbf{SE(3): rigid transforms}
+\[
+\boxed{\ SE(3)=\Big\{\!\begin{bmatrix}R&p\\0&1\end{bmatrix}\!\mid R\!\in\!SO(3),\ p\!\in\!\mathbb{R}^3\Big\},\quad
+T^{-1}=\begin{bmatrix}R^T&-R^Tp\\0&1\end{bmatrix}\ }.
+\]
+Compose:
+\[
+\boxed{\ T_{ac}=T_{ab}T_{bc}
+=\begin{bmatrix}R_{ab}R_{bc}&R_{ab}p_{bc}+p_{ab}\\0&1\end{bmatrix}\ }.
+\]
+\[
+\boxed{\ \mathrm{Ad}_T=\begin{bmatrix}R&0\\ [p]_\times R & R\end{bmatrix}\ }.
+\]
+
+\endgroup
+% ===== END LEFT COLUMN =====
+
+\columnbreak
+
+% ===== RIGHT COLUMN =====
+{\large\textbf{Conversions}}
+\vspace{2pt}\noindent\rule{\columnwidth}{0.25pt}\vspace{2pt}
+
+\textbf{A. Given twist } \(\xi=\big[\!\begin{smallmatrix}\omega\\ v\end{smallmatrix}\!\big]\) \(\Rightarrow\) \(\theta,\hat\omega,\hat v,S\) and then \(T\) \& \((h,q,d,\text{axis})\)
+
+\[
+\boxed{\ \theta=
+\begin{cases}
+\|v\|, & \|\omega\|=0\\
+\|\omega\|, & \|\omega\|\neq 0
+\end{cases}\ }
+\]
+\[
+\boxed{\ \hat\omega=
+\begin{cases}
+0, & \|\omega\|=0\\
+\dfrac{\omega}{\|\omega\|}, & \|\omega\|\neq 0
+\end{cases}\ }
+\]
+\[
+\boxed{\ \hat v=
+\begin{cases}
+\dfrac{v}{\|v\|}, & \|\omega\|=0\\[4pt]
+\dfrac{v}{\|\omega\|}, & \|\omega\|\neq 0
+\end{cases}\ }
+\qquad
+\boxed{\ S=\begin{bmatrix}\hat\omega\\ \hat v\end{bmatrix} }
+\qquad
+\boxed{\ \xi=S\,\theta\ }
+\qquad
+\boxed{\ [\xi]_\times=\begin{bmatrix}[\omega]_\times & v\\ 0 & 0\end{bmatrix}\ }
+\]
+\[
+\boxed{\ R=
+\begin{cases}
+I, & \|\omega\|=0\\
+e^{[\hat\omega]_\times\,\theta}, & \|\omega\|\neq 0
+\end{cases}\ }
+\]
+\[
+\boxed{\ e^{[\hat\omega]_\times\theta}=I+\sin\theta[\hat u]_\times+(1-\cos\theta)[\hat u]_\times^2\ }
+\]
+\[
+\boxed{\ \hat u=\omega/\theta\ }
+\]
+\[
+\boxed{\ h=
+\begin{cases}
+\infty, & \|\omega\|=0\\
+\omega^\top v, & \|\omega\|\neq 0
+\end{cases}\ }
+\qquad
+\boxed{\ q=
+\begin{cases}
+\text{any}, & \|\omega\|=0\\
+\dfrac{\omega\times v}{\|\omega\|^{2}}, & \|\omega\|\neq 0
+\end{cases}\ }
+\]
+\[
+\boxed{\ d=
+\begin{cases}
+v, & \|\omega\|=0\\
+\dfrac{(\omega^\top v)\,\theta\,\omega}{\|\omega\|^{2}}, & \|\omega\|\neq 0
+\end{cases}\ }
+\]
+\[
+\boxed{\ \ell(\lambda)=
+\begin{cases}
+O+\lambda\,\hat v, & \|\omega\|=0\\
+q+\lambda\,\hat\omega, & \|\omega\|\neq 0
+\end{cases}\ }
+\]
+
+% --- horizontal rule after Section A ---
+\vspace{2pt}\noindent\rule{\columnwidth}{0.25pt}\vspace{2pt}
+
+\textbf{B. Given } \(T=\big[\!\begin{smallmatrix}R&p\\0&1\end{smallmatrix}\!\big]\) \(\Rightarrow\) twist \(\xi\), Screw axis \(S\) and Screw motion params \(h,l,m,q\)
+
+\[
+\boxed{\ \theta=
+\begin{cases}
+\|p\|, & R=I\\
+\displaystyle \cos^{-1}\!\left(\frac{\operatorname{tr}R-1}{2}\right), & R\neq I
+\end{cases}\ }
+\]
+\[
+\boxed{\ \hat\omega=
+\begin{cases}
+\displaystyle \frac{1}{2\sin\theta}
+\begin{pmatrix}
+R_{32}-R_{23}\\[0.8pt]
+R_{13}-R_{31}\\[0.8pt]
+R_{21}-R_{12}
+\end{pmatrix},\ \operatorname{tr}R\in(-1,3)\\[9pt]
+\mathbf{0},\ \operatorname{tr}R=3\\[1.5pt]
+\begin{cases}
+\dfrac{1}{\sqrt{2(1+R_{11})}}
+\begin{pmatrix}
+1+R_{11}\\ R_{21}\\ R_{31}
+\end{pmatrix},\ R_{11}\ \text{largest diagonal}\\[6pt]
+\dfrac{1}{\sqrt{2(1+R_{22})}}
+\begin{pmatrix}
+R_{12}\\ 1+R_{22}\\ R_{32}
+\end{pmatrix},\ R_{22}\ \text{largest diagonal}\\[6pt]
+\dfrac{1}{\sqrt{2(1+R_{33})}}
+\begin{pmatrix}
+R_{13}\\ R_{23}\\ 1+R_{33}
+\end{pmatrix},\ R_{33}\ \text{largest diagonal}
+\end{cases},\ \operatorname{tr}R=-1
+\end{cases}\ }
+\]
+\[
+\boxed{\ G^{-1}(\theta)=\frac{1}{\theta}I-\frac{1}{2}[\hat\omega]_\times+\Big(\frac{1}{\theta}-\frac{1}{2}\cot\frac{\theta}{2}\Big)\,[\hat\omega]_\times^{2}\ }
+\]
+\[
+\boxed{\ v=
+\begin{cases}
+\text{any}, & R=I\ \text{and }\|p\|=0\\
+\dfrac{p}{\|p\|}, & R=I\ \text{and }\|p\|\neq 0\\
+G(\theta)^{-1}p, & R\neq I
+\end{cases}\ }
+\]
+\[
+\boxed{\ h=
+\begin{cases}
+\infty, & R=I\\
+\hat\omega^\top v, & R\neq I
+\end{cases}\ }
+\qquad
+\boxed{\ q=
+\begin{cases}
+\text{any}, & R=I\\
+\hat\omega\times v, & R\neq I
+\end{cases}\ }
+\]
+\[
+\boxed{\ d=
+\begin{cases}
+p, & R=I\\
+(\hat\omega^\top v)\,\theta\,\hat\omega, & R\neq I
+\end{cases}\ }
+\]
+\[
+\boxed{\ \ell(\lambda)=
+\begin{cases}
+O+\lambda\,v, & R=I\\
+q+\lambda\,\hat\omega, & R\neq I
+\end{cases}\ }
+\]
+\[
+\boxed{\ S=\begin{bmatrix}\hat\omega\\ v\end{bmatrix} }
+\qquad
+\boxed{\ \xi=\theta\begin{bmatrix}\hat\omega\\ v\end{bmatrix} }
+\qquad
+\boxed{\ [\xi]_\times=\begin{bmatrix}[\omega]_\times & v\\ 0 & 0\end{bmatrix}\ }
+\]
+
+% --- horizontal rule after Section B ---
+\vspace{2pt}\noindent\rule{\columnwidth}{0.25pt}\vspace{2pt}
+
+\textbf{C. Given screw motion params} $(h,\ \text{axis }\ell,\ q,\ M)\Rightarrow R,S,\theta,\xi,p,T$
+
+\[
+\boxed{\ \hat\omega=\begin{cases}0,& h=\infty\\ \hat\ell,& h\in\mathbb{R}\end{cases}\ }
+\qquad
+\boxed{\ v=\begin{cases}\dfrac{d}{\theta},& h=\infty\\ q\times\hat\omega+h\,\hat\omega,& h\in\mathbb{R}\end{cases}\ }
+\qquad
+\boxed{\ \theta=M\ } 
+\]
+\[
+\boxed{\ d=\begin{cases}\theta\,\hat\ell,& h=\infty\\ h\,\theta\,\hat\omega,& h\in\mathbb{R}\end{cases}\ }
+\qquad
+\boxed{\ S=\begin{bmatrix}\hat\omega\\ v\end{bmatrix}\ }
+\qquad
+\boxed{\ \xi=\theta S\ }
+\qquad
+\boxed{\ [\xi]_\times =\begin{bmatrix}[\omega]_\times & v\\ 0 & 0\end{bmatrix}\ }
+\]
+\[
+\boxed{\ R=\begin{cases}I,& h=\infty\\ e^{[\omega]_\times\theta},& h\in\mathbb{R}\end{cases}\ }
+\qquad
+\boxed{\ p=\begin{cases}d,& h=\infty\\ (I-R)\,q+d,& h\in\mathbb{R}\end{cases}\ }
+\qquad
+\boxed{\ T=\begin{bmatrix}R&p\\[1pt]0&1\end{bmatrix}\ }
+\]
+
+% --- horizontal rule after Section C ---
+\vspace{2pt}\noindent\rule{\columnwidth}{0.25pt}\vspace{2pt}
+
+\end{multicols}
+\end{document}

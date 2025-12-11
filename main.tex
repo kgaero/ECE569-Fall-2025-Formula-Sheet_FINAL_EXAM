@@ -1,0 +1,1339 @@
+\documentclass[9pt,a4paper]{article}
+\usepackage[margin=6.5mm]{geometry} 
+\usepackage[fleqn]{amsmath}
+\usepackage{amssymb,mathtools,bm}
+\usepackage{multicol}
+\usepackage{graphicx}
+\usepackage[final]{microtype}
+\usepackage{array}
+\usepackage{booktabs}
+\usepackage{enumitem}
+\usepackage{xcolor}
+\usepackage{pifont}
+
+% ================= PREAMBLE & DEFINITIONS =================
+
+% --- Global Layout Tweaks ---
+\setlength{\parindent}{0pt}
+\setlength{\mathindent}{0pt}
+\pagestyle{empty}
+\allowdisplaybreaks
+
+% --- Macros from Page 1 ---
+% Left-align table column + vertically centered
+\newcolumntype{V}[1]{>{\raggedright\arraybackslash}m{#1}}
+% Boxed formula helper
+\newcommand{\Lbox}[1]{\boxed{\ #1\ }}
+
+% --- Macros from Page 2 ---
+% Check / cross
+\newcommand{\cmark}{\ding{51}}
+\newcommand{\xmark}{\ding{55}}
+% Column types
+\newcolumntype{L}[1]{>{\raggedright\arraybackslash}p{#1}}
+\newcolumntype{C}[1]{>{\centering\arraybackslash}p{#1}}
+% Tight box helper
+\newcommand{\sheetbox}[1]{%
+  \setlength{\fboxsep}{1.5pt}%
+  \setlength{\fboxrule}{0.3pt}%
+  \fbox{\begin{minipage}{0.985\linewidth}#1\end{minipage}}%
+}
+
+\begin{document}
+
+% ==========================================================
+% ========================= PAGE 1 =========================
+% ==========================================================
+
+\scriptsize
+% Page 1 specific settings
+\setlength{\columnsep}{5mm}
+\setlength{\multicolsep}{0.5pt}
+\setlength{\abovedisplayskip}{0.5pt}
+\setlength{\belowdisplayskip}{0.5pt}
+\setlength{\abovedisplayshortskip}{0.5pt}
+\setlength{\belowdisplayshortskip}{0.5pt}
+\setlength{\arraycolsep}{1pt}
+\setlength{\jot}{0.5pt}
+\linespread{0.90}
+\renewcommand{\arraystretch}{0.90}
+\setlength{\fboxsep}{1.2pt}
+\setlength{\fboxrule}{0.25pt}
+
+\begin{multicols}{2}
+
+% ===== LEFT COLUMN =====
+\begingroup
+% slightly tighter to help ensure 1-page fit
+\linespread{0.76}\selectfont
+\setlength{\abovedisplayskip}{0.12pt}
+\setlength{\belowdisplayskip}{0.12pt}
+\setlength{\abovedisplayshortskip}{0.12pt}
+\setlength{\belowdisplayshortskip}{0.12pt}
+\setlength{\jot}{0.12pt}
+\renewcommand{\arraystretch}{0.82}
+
+{\small\textbf{ECE 56900 – Introduction to Robotic Systems (Fall 2025)}}
+\vspace{1.5pt}\noindent\rule{\columnwidth}{0.25pt}\vspace{1.5pt}
+
+% ===== TOP-LEFT ADDITIONS (boxed style like right column) =====
+\begingroup
+% reduced font to guarantee single-page fit
+\fontsize{4.6}{5.2}\selectfont
+\linespread{0.84}\selectfont
+% modest vertical gap between rows of formulas (within this block only)
+\setlength{\abovedisplayskip}{0.35pt}
+\setlength{\belowdisplayskip}{0.35pt}
+\setlength{\abovedisplayshortskip}{0.35pt}
+\setlength{\belowdisplayshortskip}{0.35pt}
+\setlength{\jot}{0.15pt}
+\renewcommand{\arraystretch}{0.95}
+
+\textbf{Linear transformation (linearity)}
+\[
+\Lbox{\,T(x+y)=T(x)+T(y),\qquad T(cx)=c\,T(x)\,}
+\]
+
+\textbf{Inner product (axioms)}
+\[
+\Lbox{\,\langle a x+b y,\, z\rangle=a\langle x,z\rangle+b\langle y,z\rangle,\quad
+\langle x,y\rangle=\langle y,x\rangle,\quad
+\langle x,x\rangle>0\ \text{ if }x\neq 0\,}
+\]
+
+\textbf{Norm (axioms)}
+\[
+\Lbox{\,\|x\|\ge 0,\quad \|x\|=0\iff x=0,\quad
+\|c x\|=|c|\,\|x\|,\quad
+\|x+y\|\le \|x\|+\|y\|\,}
+\]
+
+\noindent
+\begin{minipage}[t]{0.48\linewidth}
+\textbf{Matrix inverse (2$\times$2)}\\[-2pt]
+\[
+\Lbox{\,\begin{bmatrix}a&b\\ c&d\end{bmatrix}^{-1}
+=\frac{1}{ad-bc}\begin{bmatrix}d&-b\\ -c& a\end{bmatrix}\,}
+\]
+\end{minipage}
+\hfill
+\begin{minipage}[t]{0.48\linewidth}
+\textbf{Orthogonal (2$\times$2)}\\[-2pt]
+\[
+\Lbox{\,Q^{\top}Q = I_{2\times2} = QQ^{\top}\,}
+\]
+\end{minipage}
+
+\textbf{Matrix exponential / LTI solution}
+\[
+\Lbox{\,\dot x(t)=A\,x(t)\,}\;\;
+\Lbox{\,x(t)=e^{At}x_0\,}\;\;
+\Lbox{\,e^{At}=I+At+\frac{(At)^2}{2!}+\frac{(At)^3}{3!}+\cdots\,}
+\]
+\[
+\Lbox{\,\text{If }S\in\mathbb{R}^{n\times n}\text{ is nonsingular, then } e^{\,S^{-1}AS}=S^{-1}e^{A}S\,}
+\]
+
+\[
+\Lbox{\,\cos x = 1 - \frac{x^{2}}{2!} + \frac{x^{4}}{4!} - \frac{x^{6}}{6!} + \cdots\,}
+\hfill
+\Lbox{\,\sin x = x - \frac{x^{3}}{3!} + \frac{x^{5}}{5!} - \frac{x^{7}}{7!} + \cdots\,}
+\]
+
+\textbf{Euler angles (intrinsic ZYX / yaw--pitch--roll)}
+\[
+\Lbox{\,R(\theta,\phi,\psi)=R_z(\psi)\,R_y(\phi)\,R_x(\theta)\,}
+\hfill
+\Lbox{\,c(\cdot)=\cos(\cdot),\quad s(\cdot)=\sin(\cdot)\,}
+\]
+\[
+\Lbox{\,
+\begin{bmatrix}
+c_\psi c_\phi &&& c_\psi s_\phi s_\theta - s_\psi c_\theta &&& c_\psi s_\phi c_\theta + s_\psi s_\theta\\
+s_\psi c_\phi &&& s_\psi s_\phi s_\theta + c_\psi c_\theta &&& s_\psi s_\phi c_\theta - c_\psi s_\theta\\
+-s_\phi &&& c_\phi s_\theta &&& c_\phi c_\theta
+\end{bmatrix}
+\,}
+\]
+
+\textbf{Pfaffian constraint}
+\[
+\Lbox{\,A(q)\,\dot q = 0,\ \ A\!\in\!\mathbb{R}^{m\times n},\ \dot q\!\in\!\mathbb{R}^{n\times 1}\,}
+\hfill
+\Lbox{\,\operatorname{rank}(A)=\text{number of independent constraints}\,}
+\]
+
+% --- Joints and mobility/DOF ---
+\noindent
+\begin{minipage}[t]{0.76\linewidth}
+\begingroup
+\setlength{\tabcolsep}{1.0pt}
+\renewcommand{\arraystretch}{0.90}
+\fontsize{4.6}{5.2}\selectfont
+\[
+\begin{array}{|l|c|c|c|}
+\hline
+\multicolumn{1}{|c|}{\textbf{Joint type}} & \textbf{dof $f$} &
+\multicolumn{1}{c|}{\begin{array}{c}\textbf{Constraints $c$}\\ \textbf{between two}\\ \textbf{planar}\\ \textbf{rigid bodies}\end{array}} &
+\multicolumn{1}{c|}{\begin{array}{c}\textbf{Constraints $c$}\\ \textbf{between two}\\ \textbf{spatial}\\ \textbf{rigid bodies}\end{array}}\\
+\hline
+\text{Revolute (R)}   & 1 & 2   & 5\\
+\text{Prismatic (P)}  & 1 & 2   & 5\\
+\text{Helical (H)}    & 1 & \text{N/A} & 5\\
+\text{Cylindrical (C)}& 2 & \text{N/A} & 4\\
+\text{Universal (U)}  & 2 & \text{N/A} & 4\\
+\text{Spherical (S)}  & 3 & \text{N/A} & 3\\
+\hline
+\end{array}
+\]
+\endgroup
+\end{minipage}
+\hspace{0.1mm}
+\begin{minipage}[t]{0.26\linewidth}
+\raggedright
+\[
+\resizebox{\linewidth}{!}{%
+\Lbox{\,\mathrm{dof}=m\,(N-1-J)+\sum_{i=1}^{J} f_i\,}%
+}
+\]
+\end{minipage}
+
+\[
+\Lbox{\resizebox{0.97\linewidth}{!}{$
+\text{Dof $(m)$ of rigid body in $n$-D}=\tfrac{n(n+1)}{2},\quad
+\text{Translational dof}=n,\quad
+\text{Rotational dof}=\tfrac{n(n-1)}{2}
+$}}
+\]
+
+\endgroup
+% ===== END TOP-LEFT ADDITIONS =====
+
+% --- keep table bottom aligned in left column ---
+\vspace*{\fill}
+
+% --- table styling: still taller rows + vertical centering, but slightly reduced to fit page ---
+\setlength{\tabcolsep}{3pt}
+\setlength{\extrarowheight}{2.0pt}
+\renewcommand{\arraystretch}{1.25}
+\tiny
+
+\begin{tabular}{|V{0.47\linewidth}|V{0.47\linewidth}|}
+\hline
+\textbf{Rotation $R$ / angular velocity $\omega$} &
+\textbf{Homogeneous transform $T$ / twist $\xi$} \\
+\hline
+
+% ===== NEW ROW 1 =====
+$\mathbb{R}^3 \leftrightarrow \mathfrak{so}(3) \leftrightarrow SO(3)$ &
+$\mathbb{R}^6 \leftrightarrow \mathfrak{se}(3) \leftrightarrow SE(3)$ \\
+\hline
+
+% ===== NEW ROW 2 =====
+$\omega\theta \leftrightarrow [\omega]_\times\theta \leftrightarrow
+R=\exp\!\big([\omega]_\times\theta\big)$ &
+$\xi\theta \leftrightarrow [\xi]_\times\theta \leftrightarrow
+T=\exp\!\big([\xi]_\times\theta\big)$ \\
+\hline
+
+$R \in SO(3)$ &
+$T \in SE(3)$ \\
+\hline
+$R \in \mathbb{R}^{3\times 3}$ &
+$T \in \mathbb{R}^{4\times 4},\quad
+T=\begin{bmatrix}R & p\\ 0 & 1\end{bmatrix},\ 
+R\in SO(3),\ p\in\mathbb{R}^3$ \\
+\hline
+$R^\top R=I,\ \det R=1$ &
+bottom row $=[0\ 0\ 0\ 1]$, top-left block $\in SO(3)$ \\
+\hline
+$R:\ 9\ \text{params} - 6\ \text{orthonormality constraints} \rightarrow 3\ \mathrm{DOF}$ &
+$T:\ (9\ \text{for}\ R + 3\ \text{for}\ p) - 6\ \text{orthonormality constraints} \rightarrow 6\ \mathrm{DOF}$ \\
+\hline
+$R^{-1}=R^\top$ &
+$T^{-1}=\begin{bmatrix}R^\top & -R^\top p\\ 0 & 1\end{bmatrix}$ \\
+\hline
+$R_{sc}=R_{sb}R_{bc}$ &
+$T_{sc}=T_{sb}T_{bc}$ \\
+\hline
+if $\omega$ expressed in $\{b\}:\quad R'_{sb}=R_{sb}\,e^{[\omega_b]_\times\theta}$ &
+if $\xi$ expressed in $\{b\}:\quad T'_{sb}=T_{sb}\,e^{[\xi_b]_\times\theta}$ \\
+\hline
+if $\omega$ expressed in $\{s\}:\quad R'_{sb}=e^{[\omega_s]_\times\theta}R_{sb}$ &
+if $\xi$ expressed in $\{s\}:\quad T'_{sb}=e^{[\xi_s]_\times\theta}T_{sb}$ \\
+\hline
+not commutative: $R_1R_2\neq R_2R_1$ &
+not commutative: $T_1T_2\neq T_2T_1$ \\
+\hline
+$v_s=R_{sb}v_b,\quad v_b=R_{sb}^\top v_s$ &
+$\begin{bmatrix}p_s\\1\end{bmatrix}=T_{sb}\begin{bmatrix}p_b\\1\end{bmatrix},\quad
+\begin{bmatrix}p_b\\1\end{bmatrix}=T_{sb}^{-1}\begin{bmatrix}p_s\\1\end{bmatrix}$ \\
+\hline
+$\|Rp-Rq\|=\|p-q\|,\ \forall p,q\in\mathbb{R}^3$ &
+$\|R(p-q)\|=\|p-q\|$ (embedded via the $R$ block of $T$) \\
+\hline
+$R(u\times w)=(Ru)\times(Rw),\ \forall u,w\in\mathbb{R}^3$ &
+rotational part of rigid motion preserves cross products \\
+\hline
+rotation axis: $\hat\omega,\ \|\hat\omega\|=1$ &
+unit screw axis (unit twist):
+$\hat\xi=\begin{bmatrix}\hat\omega\\ \hat v\end{bmatrix}$,
+with (a) $\|\hat\omega\|=1$ or (b) $\hat\omega=0,\ \|\hat v\|=1$ \\
+\hline
+$\begin{aligned}
+[\omega]_\times &=
+\begin{bmatrix}
+0 & -\omega_3 & \omega_2\\
+\omega_3 & 0 & -\omega_1\\
+-\omega_2 & \omega_1 & 0
+\end{bmatrix},\\
+[\omega]_\times^{2} &= \omega\omega^{\top}-\|\omega\|^{2}I_{3\times 3},\\
+[\omega]_\times^{3} &= -\|\omega\|^{2}[\omega]_\times
+\end{aligned}$ &
+$[\xi]_\times=
+\begin{bmatrix}
+[\omega]_\times & v\\
+0 & 0
+\end{bmatrix}
+=
+\begin{bmatrix}
+0 & -\omega_3 & \omega_2 & v_1\\
+\omega_3 & 0 & -\omega_1 & v_2\\
+-\omega_2 & \omega_1 & 0 & v_3\\
+0&0&0&0
+\end{bmatrix}$ \\
+\hline
+$[\omega]_\times\in\mathfrak{so}(3),\ 
+\omega=([\omega]_\times)^\vee\in\mathbb{R}^3$ &
+$[\xi]_\times\in\mathfrak{se}(3),\ 
+\xi=\begin{bmatrix}\omega\\ v\end{bmatrix}
+=([\xi]_\times)^\vee\in\mathbb{R}^6$ \\
+\hline
+$([\omega]_\times)^\top=-[\omega]_\times$ &
+Not Applicable for $[\xi]_\times$ \\
+\hline
+$[R\omega]_\times = R[\omega]_\times R^\top$ &
+$[\mathrm{Ad}_T\xi]_\times = T[\xi]_\times T^{-1}$ \\
+\hline
+$[\omega_b]_\times = R^{-1}[\omega_s]_\times R$ &
+$[\xi_b]_\times = T^{-1}[\xi_s]_\times T$ \\
+\hline
+$\omega_s = R\,\omega_b$ &
+$\xi_s = \mathrm{Ad}_T\,\xi_b,\quad
+\mathrm{Ad}_T=\begin{bmatrix}R & 0\\ [p]_\times R & R\end{bmatrix}$ \\
+\hline
+$R(t)=e^{[\omega]_\times t}R(0)$ (constant $\omega$) &
+$T(t)=e^{[\xi]_\times t}T(0)$ (constant $\xi$) \\
+\hline
+$\mathrm{Rot}(\hat\omega,\theta)=e^{[\hat\omega]_\times\theta}
+= I_{3\times 3}+\sin\theta[\hat\omega]_\times
++(1-\cos\theta)[\hat\omega]_\times^2$ &
+{\tiny
+\(
+\resizebox{0.98\linewidth}{!}{$
+e^{[\hat\xi]_\times\theta}=
+\begin{bmatrix}
+e^{[\hat\omega]_\times\theta} &
+\big(I\theta+(1-\cos\theta)[\hat\omega]_\times+(\theta-\sin\theta)[\hat\omega]_\times^2\big)\hat v\\
+0 & 1
+\end{bmatrix}
+$}
+\)
+} \\&
+{\tiny
+\(
+\resizebox{0.98\linewidth}{!}{$
+e^{[\hat\xi]_\times\theta}=
+\begin{bmatrix}
+e^{[\omega]_{\times}\theta} 
+& 
+\left(I - e^{[\omega]_{\times}\theta}\right)(\omega \times v) + \omega\omega^{\mathsf T}v\,\theta
+\\[4pt]
+0_{1\times 3} 
+& 
+1
+\end{bmatrix}
+$}
+\)
+}
+
+\\
+\hline
+ &
+if $\hat\omega=0,\ \|\hat v\|=1:\quad
+e^{[\hat\xi]_\times\theta}=
+\begin{bmatrix}
+I & \hat v\,\theta\\
+0 & 1
+\end{bmatrix}$ \\
+\hline
+
+% ===== NEW ROW (from LATEX block) =====
+$[\omega_b]_{\times}=R_{sb}^{\mathsf T}\dot{R}_{sb}$ &
+{\small
+\(
+\resizebox{0.98\linewidth}{!}{$
+[\xi_b]_{\times}
+=
+T^{-1}_{sb}\,\dot{T}_{sb}
+=
+\begin{bmatrix}
+[\omega_b]_{\times} & v_b \\
+0_{1\times 3} & 0
+\end{bmatrix}
+=
+\begin{bmatrix}
+(R_{sb}^{\mathsf T}\dot{R}_{sb}) & (R_{sb}^{\mathsf T}\dot{p}_{sb}) \\
+0_{1\times 3} & 0
+\end{bmatrix}
+$}
+\)
+} \\
+\hline
+
+% ===== EXISTING ROW (xi_s) =====
+$[\omega_s]_{\times}=\dot{R}_{sb}\,R_{sb}^{\mathsf T}$ &
+{\small
+\(
+\resizebox{0.98\linewidth}{!}{$
+[\xi_s]_{\times}
+=
+\dot{T}_{sb}\,T^{-1}_{sb}
+=
+\begin{bmatrix}
+[\omega_s]_{\times} & v_s \\
+0_{1\times 3} & 0
+\end{bmatrix}
+=
+\begin{bmatrix}
+(\dot{R}_{sb}R_{sb}^{\mathsf T}) &
+(\dot{p}_{sb} - [\omega_s]_{\times}p_{sb}) \\
+0_{1\times 3} & 0
+\end{bmatrix}
+$}
+\)
+} \\
+\hline
+
+$\dot R = [\omega_s]_\times R = R[\omega_b]_\times$ &
+$\dot T = [\xi_s]_\times T = T[\xi_b]_\times$ \\
+\hline
+\end{tabular}
+
+\normalsize
+\endgroup
+% ===== END LEFT COLUMN =====
+
+\columnbreak
+
+% ===== RIGHT COLUMN =====
+{\small\textbf{Equation Sheet}}
+\vspace{2pt}\noindent\rule{\columnwidth}{0.25pt}\vspace{2pt}
+
+\textbf{A. EXP: twist coordinate} \(\xi=\big[\!\begin{smallmatrix}\omega\\ v\end{smallmatrix}\!\big]\) \(\Rightarrow\) \(\theta,\hat\omega,\hat v,S\) and then \(T\) \& \((h,q,d,\text{axis})\)
+
+\[
+\boxed{\ \theta=
+\begin{cases}
+\|v\|, & \|\omega\|=0\\
+\|\omega\|, & \|\omega\|\neq 0
+\end{cases}\ }
+\]
+\[
+\boxed{\ \hat\omega=
+\begin{cases}
+0, & \|\omega\|=0\\
+\dfrac{\omega}{\|\omega\|}, & \|\omega\|\neq 0
+\end{cases}\ }
+\]
+\[
+\boxed{\ \hat v=
+\begin{cases}
+\dfrac{v}{\|v\|}, & \|\omega\|=0\\[4pt]
+\dfrac{v}{\|\omega\|}, & \|\omega\|\neq 0
+\end{cases}\ }
+\qquad
+\boxed{\ S=\begin{bmatrix}\hat\omega\\ \hat v\end{bmatrix} }
+\qquad
+\boxed{\ \xi=S\,\theta\ }
+\qquad
+\boxed{\ [\xi]_\times=\begin{bmatrix}[\omega]_\times & v\\ 0 & 0\end{bmatrix}\ }
+\]
+
+% --- R and p on same line ---
+\[
+\resizebox{\linewidth}{!}{$
+\boxed{\ R=
+\begin{cases}
+I, & \|\omega\|=0\\
+e^{[\hat\omega]_\times\,\theta}, & \|\omega\|\neq 0
+\end{cases}\ }
+\qquad
+\boxed{\ p=
+\begin{cases}
+\theta\,\hat v, & \|\omega\|=0\\
+\left(I\theta+(1-\cos\theta)[\hat\omega]_\times+(\theta-\sin\theta)[\hat\omega]_\times^2\right)\hat v, & \|\omega\|\neq 0
+\end{cases}\ }
+$}
+\]
+
+\[
+\boxed{\ e^{[\hat\omega]_\times\theta}=I+\sin\theta[\hat u]_\times+(1-\cos\theta)[\hat u]_\times^2\ }
+\]
+\[
+\boxed{\ \hat u=\omega/\theta\ }
+\]
+\[
+\boxed{\ h=
+\begin{cases}
+\infty, & \|\omega\|=0\\
+\omega^\top v, & \|\omega\|\neq 0
+\end{cases}\ }
+\qquad
+\boxed{\ q=
+\begin{cases}
+\text{any}, & \|\omega\|=0\\
+\dfrac{\omega\times v}{\|\omega\|^{2}}, & \|\omega\|\neq 0
+\end{cases}\ }
+\]
+\[
+\boxed{\ d=
+\begin{cases}
+v, & \|\omega\|=0\\
+\dfrac{(\omega^\top v)\,\theta\,\omega}{\|\omega\|^{2}}, & \|\omega\|\neq 0
+\end{cases}\ }
+% \]
+% \[
+\qquad
+\boxed{\ \ell(\lambda)=
+\begin{cases}
+O+\lambda\,\hat v, & \|\omega\|=0\\
+q+\lambda\,\hat\omega, & \|\omega\|\neq 0
+\end{cases}\ }
+\]
+
+% --- horizontal rule after Section A ---
+\vspace{2pt}\noindent\rule{\columnwidth}{0.25pt}\vspace{2pt}
+
+\textbf{B. LOG: } \(T=\big[\!\begin{smallmatrix}R&p\\0&1\end{smallmatrix}\!\big]\) \(\Rightarrow\) twist coordinate \(\xi\), Screw axis \(S\) and Screw motion params \(h,l,m,q\)
+
+\[
+\boxed{\ \theta=
+\begin{cases}
+\|p\|, & R=I\\
+\displaystyle \cos^{-1}\!\left(\frac{\operatorname{tr}R-1}{2}\right), & R\neq I
+\end{cases}\ }
+\]
+\[
+\boxed{\ \hat\omega=
+\begin{cases}
+\displaystyle \frac{1}{2\sin\theta}
+\begin{pmatrix}
+R_{32}-R_{23}\\[0.8pt]
+R_{13}-R_{31}\\[0.8pt]
+R_{21}-R_{12}
+\end{pmatrix},\ \operatorname{tr}R\in(-1,3)\\[9pt]
+\mathbf{0},\ \operatorname{tr}R=3\\[1.5pt]
+\begin{cases}
+\dfrac{1}{\sqrt{2(1+R_{11})}}
+\begin{pmatrix}
+1+R_{11}\\ R_{21}\\ R_{31}
+\end{pmatrix},\ R_{11}\ \text{largest diagonal}\\[6pt]
+\dfrac{1}{\sqrt{2(1+R_{22})}}
+\begin{pmatrix}
+R_{12}\\ 1+R_{22}\\ R_{32}
+\end{pmatrix},\ R_{22}\ \text{largest diagonal}\\[6pt]
+\dfrac{1}{\sqrt{2(1+R_{33})}}
+\begin{pmatrix}
+R_{13}\\ R_{23}\\ 1+R_{33}
+\end{pmatrix},\ R_{33}\ \text{largest diagonal}
+\end{cases},\ \operatorname{tr}R=-1
+\end{cases}\ }
+\]
+\[
+\boxed{\ G^{-1}(\theta)=\frac{1}{\theta}I-\frac{1}{2}[\hat\omega]_\times+\Big(\frac{1}{\theta}-\frac{1}{2}\cot\frac{\theta}{2}\Big)\,[\hat\omega]_\times^{2}\ }
+\]
+\[
+\boxed{\ v=
+\begin{cases}
+\text{any}, & R=I\ \text{and }\|p\|=0\\
+\dfrac{p}{\|p\|}, & R=I\ \text{and }\|p\|\neq 0\\
+G(\theta)^{-1}p, & R\neq I
+\end{cases}\ }
+\]
+
+\[
+\boxed{\ S=\begin{bmatrix}\hat\omega\\ v\end{bmatrix} }
+\qquad
+\boxed{\ \xi=\theta\begin{bmatrix}\hat\omega\\ v\end{bmatrix} }
+\qquad
+\boxed{\ [\xi]_\times=\begin{bmatrix}[\omega]_\times & v\\ 0 & 0\end{bmatrix}\ }
+\]
+
+\[
+\boxed{\ h=
+\begin{cases}
+\infty, & R=I\\
+\hat\omega^\top v, & R\neq I
+\end{cases}\ }
+\qquad
+\boxed{\ q=
+\begin{cases}
+\text{any}, & R=I\\
+\hat\omega\times v, & R\neq I
+\end{cases}\ }
+\]
+\[
+\boxed{\ d=
+\begin{cases}
+p, & R=I\\
+(\hat\omega^\top v)\,\theta\,\hat\omega, & R\neq I
+\end{cases}\ }
+% \]
+% \[
+\qquad
+\boxed{\ \ell(\lambda)=
+\begin{cases}
+O+\lambda\,v, & R=I\\
+q+\lambda\,\hat\omega, & R\neq I
+\end{cases}\ }
+\]
+
+
+
+% --- horizontal rule after Section B ---
+\vspace{2pt}\noindent\rule{\columnwidth}{0.25pt}\vspace{2pt}
+
+\textbf{C. Geometric: screw motion params} $(h,\ \text{axis }\ell,\ q,\ M)\Rightarrow R,S,\theta,\xi,p,T$
+
+\[
+\boxed{\ \hat\omega=\begin{cases}0,& h=\infty\\ \hat\ell,& h\in\mathbb{R}\end{cases}\ }
+\qquad
+\boxed{\ v=\begin{cases}\dfrac{d}{\theta},& h=\infty\\ q\times\hat\omega+h\,\hat\omega,& h\in\mathbb{R}\end{cases}\ }
+\qquad
+\boxed{\ \theta=M\ } 
+\]
+\[
+\boxed{\ d=\begin{cases}\theta\,\hat\ell,& h=\infty\\ h\,\theta\,\hat\omega,& h\in\mathbb{R}\end{cases}\ }
+\qquad
+\boxed{\ S=\begin{bmatrix}\hat\omega\\ v\end{bmatrix}\ }
+\qquad
+\boxed{\ \xi=\theta S\ }
+\qquad
+\boxed{\ [\xi]_\times =\begin{bmatrix}[\omega]_\times & v\\ 0 & 0\end{bmatrix}\ }
+\]
+\[
+\boxed{\ R=\begin{cases}I,& h=\infty\\ e^{[\omega]_\times\theta},& h\in\mathbb{R}\end{cases}\ }
+\qquad
+\boxed{\ p=\begin{cases}d,& h=\infty\\ (I-R)\,q+d,& h\in\mathbb{R}\end{bmatrix}\ }
+\qquad
+\boxed{\ T=\begin{bmatrix}R&p\\[1pt]0&1\end{bmatrix}\ }
+\]
+
+% --- horizontal rule after Section C ---
+\vspace{2pt}\noindent\rule{\columnwidth}{0.25pt}\vspace{2pt}
+
+\end{multicols}
+
+% ==========================================================
+% ========================= PAGE 2 =========================
+% ==========================================================
+\clearpage
+
+% Apply Page 2 specific fonts and settings
+\fontsize{6.6}{7.2}\selectfont
+\setlength{\parskip}{0.5pt}
+
+% Reduce display-math vertical gaps (more aggressive)
+\setlength{\abovedisplayskip}{1.0pt}
+\setlength{\belowdisplayskip}{1.0pt}
+\setlength{\abovedisplayshortskip}{0.5pt}
+\setlength{\belowdisplayshortskip}{0.5pt}
+
+% Very compact lists
+\setlist[itemize]{leftmargin=*, itemsep=0pt, topsep=0.5pt, parsep=0pt, partopsep=0pt}
+\setlist[enumerate]{leftmargin=*, itemsep=0pt, topsep=0.5pt, parsep=0pt, partopsep=0pt}
+
+\begin{minipage}[t]{0.49\textwidth}
+  \vspace*{0pt}
+
+%========================
+% TOP-LEFT: {b}/{s} frame summary
+%========================
+\sheetbox{
+% \textbf{Screw axis, PoE, Jacobians, twists, wrenches, dynamics}
+
+{\fontsize{5.8}{6.2}\selectfont
+\renewcommand{\arraystretch}{1.06}
+\setlength{\tabcolsep}{3pt}
+\begin{tabular}{L{0.48\linewidth} L{0.48\linewidth}}
+% \hline
+\textbf{\{b\} frame (Body)} & \textbf{\{s\} frame (Space)} \\
+\hline
+\textbf{Screw axis: S/B}\\
+$\omega_b \in \mathbb{R}^3$ : screw-axis direction in $\{b\}$ &
+$\omega_s \in \mathbb{R}^3$ : screw-axis direction in $\{s\}$ \\
+
+$q_b \in \mathbb{R}^3$ : point on screw axis in $\{b\}$ &
+$q_s \in \mathbb{R}^3$ : point on screw axis in $\{s\}$ \\
+
+$v_b = -\,\omega_b \times q_b$ &
+$v_s = -\,\omega_s \times q_s$ \\
+
+$B_i = \begin{bmatrix}\omega_b\\ v_b\end{bmatrix}\in\mathbb{R}^6$ &
+$S_i = \begin{bmatrix}\omega_s\\ v_s\end{bmatrix}\in\mathbb{R}^6$ 
+\\
+$S = \mathrm{Ad}_{T_{sb}}\,B$ & 
+$B = \mathrm{Ad}_{T_{bs}}\,S\\
+
+\hline
+\textbf{Jacobian: J}\\
+$J_b(\theta)=\big[J_{b1}(\theta)\ \cdots\ J_{bn}(\theta)\big]\in\mathbb{R}^{6\times n}$ &
+$J_s(\theta)=\big[J_{s1}(\theta)\ \cdots\ J_{sn}(\theta)\big]\in\mathbb{R}^{6\times n}$ \\
+
+$J_{bn}=B_n$ &
+$J_{s1}=S_1$ \\
+
+$J_{bi}(\theta)=\mathrm{Ad}_{e^{-[B_n]\theta_n}\cdots e^{-[B_{i+1}]\theta_{i+1}}}\,B_i,$
+$i=1,\dots,n-1$ &
+$J_{si}(\theta)=\mathrm{Ad}_{e^{[S_1]\theta_1}\cdots e^{[S_{i-1}]\theta_{i-1}}}\,S_i,$
+$i=2,\dots,n$ \\
+
+$J_b(\theta)=\mathrm{Ad}_{T_{bs}}\,J_s(\theta)$ &
+$J_s(\theta)=\mathrm{Ad}_{T_{sb}}\,J_b(\theta)$ \\
+
+\hline
+
+\textbf{Forward kinematics:}\\
+\multicolumn{2}{p{0.94\linewidth}}{\{s\}\;-\;\text{joint }1\;-\;\text{joint }2\;-\;\cdots\;-\;\text{joint }n\;-\;\{b\}}\\
+$T(\theta)=M\,e^{[B_1]\theta_1}e^{[B_2]\theta_2}\cdots e^{[B_n]\theta_n}$ &
+$T(\theta)=e^{[S_1]\theta_1}e^{[S_2]\theta_2}\cdots e^{[S_n]\theta_n}\,M$ \\
+
+$M=T_{sb}(0),\quad T(\theta)=T_{sb}(\theta)$ &
+$M=T_{sb}(0),\quad T(\theta)=T_{sb}(\theta)$ \\
+
+\hline
+
+\textbf{End-effector twist: V}\\
+$V_b=J_b(\theta)\,\dot{\theta}$ &
+$V_s=J_s(\theta)\,\dot{\theta}$\\
+$V_b=\mathrm{Ad}_{T_{sb}}^{-1} V_s$ &
+$V_s=\mathrm{Ad}_{T_{sb}} V_b$\\
+$[V_b]_\times=T_{sb}^{-1}$[V_s]_\times$ T_{sb}$&
+$[V_s]_\times=T_{sb}$[V_b]_\times$ T_{sb}^{-1}$\\
+${}^{b}\!V_{ac}=\mathrm{Ad}_{T_{bc}}^{-1}\,{}^{b}\!V_{ab}+{}^{b}\!V_{bc}$ &
+${}^{s}\!V_{ac}={}^{s}\!V_{ab}+\mathrm{Ad}_{T_{ab}}\,{}^{s}\!V_{bc}$\\
+\hline
+
+\textbf{End-effector wrench: F}\\
+Always acts at origin of \{b\} frame & Always acts at the origin of \{s\} frame\\
+$F_b=\begin{bmatrix}m_b\\ f_b\end{bmatrix},\quad m_b=r_b\times f_b$ &
+$F_s=\begin{bmatrix}m_s\\ f_s\end{bmatrix},\quad m_s=r_s\times f_s$ 
+\\
+
+$F_b=\mathrm{Ad}_{T_{sb}}^{T}F_s$ &
+$F_s=\mathrm{Ad}_{T_{bs}}^{T}F_b$
+
+$F_s
+=
+\mathrm{Ad}^{\mathsf T}_{T_{B_1 s}}\,F_{B_1}
++
+\mathrm{Ad}^{\mathsf T}_{T_{B_2 s}}\,F_{B_2}$ 
+\\
+
+\hline
+\textbf{Single Rigid body dynamics}\\
+
+$F_b =
+\begin{bmatrix}
+I_b & 0_{3\times3}\\
+0_{3\times3} & m I_{3\times3}
+\end{bmatrix}
+\begin{bmatrix}
+\dot{\omega}_b\\
+\dot{v}_b
+\end{bmatrix}
++
+\begin{bmatrix}
+\omega_b \times (I_b \omega_b)\\
+\omega_b \times (m v_b)
+\end{bmatrix}$
+&
+$F_s =
+\begin{bmatrix}
+I_s & 0_{3\times3}\\
+0_{3\times3} & m I_{3\times3}
+\end{bmatrix}
+\begin{bmatrix}
+\dot{\omega}_s\\
+\ddot{p}_{sb}
+\end{bmatrix}
++
+\begin{bmatrix}
+\hat{\omega}_s I_s \omega_s\\
+0_{3\times1}
+\end{bmatrix}
+$
+\\[1pt]
+$\mathcal{T}
+= \tfrac{1}{2}\,\mathbf{V}_b^{\mathsf T} M_b \mathbf{V}_b$
+&
+$\mathcal{T}
+= \tfrac{1}{2}\,\mathbf{V}_c^{\mathsf T} M_c \mathbf{V}_c$
+\\[1pt]
+$M_b
+=
+\begin{bmatrix}
+I_b & 0_{3\times 3} \\
+0_{3\times 3} & m I_{3\times 3}
+\end{bmatrix}$
+&
+$M_c
+=
+\begin{bmatrix}
+R_{bc}^{\mathsf T}(I_b - m \widehat{\mathbf{p}}_{bc}^{\,2})R_{bc}
+&
+-\,m R_{bc}^{\mathsf T} \widehat{\mathbf{p}}_{bc} R_{bc}
+\\[1pt]
+m R_{bc}^{\mathsf T} \widehat{\mathbf{p}}_{bc} R_{bc}
+&
+m I_{3\times 3}
+\end{bmatrix}$
+\\[1pt]
+$\mathcal{T}
+= \tfrac{1}{2}\,m\lVert \mathbf{v}_b \rVert^{2}
++ \tfrac{1}{2}\,\boldsymbol{\omega}_b^{\mathsf T} I_b \boldsymbol{\omega}_b$
+&
+$\mathcal{T}
+= \tfrac{1}{2}\,m\lVert \mathbf{v}_c \rVert^{2}
++ \tfrac{1}{2}\,\boldsymbol{\omega}_c^{\mathsf T}
+R_{bc}^{\mathsf T}(I_b - m \widehat{\mathbf{p}}_{bc}^{\,2})R_{bc}
+\boldsymbol{\omega}_c
++ m\,\boldsymbol{\omega}_c^{\mathsf T}
+\bigl(R_{bc}^{\mathsf T}\widehat{\mathbf{p}}_{bc}R_{bc}\bigr)\mathbf{v}_c$
+\\[1pt]
+\text{--} &
+$M_c = \operatorname{Ad}_{T_{bc}}^{\mathsf T} M_b \operatorname{Ad}_{T_{bc}}$
+\\[2pt]
+\hline
+% \vspace{1pt}
+
+
+\textbf{Multi joint Robot: Joint torques:}\\
+$\tau=M(\theta)\ddot{\theta}+c(\theta,\dot{\theta})+g(\theta)+J_b(\theta)^T F^{\,b}_{\mathrm{tip}}$ &
+$\tau=M(\theta)\ddot{\theta}+c(\theta,\dot{\theta})+g(\theta)+J_s(\theta)^T F^{\,s}_{\mathrm{tip}}$ \\
+
+\multicolumn{2}{p{0.94\linewidth}}{\fontsize{5.6}{6.1}\selectfont
+$M(\theta),\,c(\theta,\dot{\theta}),\,g(\theta)$ are joint-space terms (frame-invariant w.r.t.\ $\{s\}/\{b\}$).} 
+
+\end{tabular}
+}
+}
+
+\vspace{1pt}
+
+%========================
+% Robot dynamics + Lagrangian formulation (vertically compressed)
+%========================
+\sheetbox{
+{\fontsize{5.6}{6.0}\selectfont
+\setlength{\abovedisplayskip}{0.25pt}
+\setlength{\belowdisplayskip}{0.25pt}
+\setlength{\abovedisplayshortskip}{0.15pt}
+\setlength{\belowdisplayshortskip}{0.15pt}
+\textbf{Dynamics:}\\
+\[
+\tau
+=
+\underbrace{M(\theta)\,\ddot{\theta}}_{\substack{n\times n\\ \text{mass matrix}}}
++
+\underbrace{c(\theta,\dot{\theta})}_{\substack{\text{velocity-}\\ \text{product term}}}
++
+\underbrace{g(\theta)}_{\substack{\text{gravity}\\ \text{term}}}
++
+\underbrace{J^{\mathsf T}(\theta)\,F_{\text{tip}}}_{\substack{\text{term to}\\ \text{create wrench at End-Effector}}}
+\]
+
+\[
+f \;=\; \text{``ma''} \;+\; \text{gravity} \;+\; \text{end-effector forces}
+\]
+
+% \[
+% \textbf{Approaches:}\qquad \text{Lagrangian formulation}
+% \]
+
+\[
+\mathcal{L}(\theta,\dot{\theta})
+=
+\mathcal{K}(\theta,\dot{\theta})
+-
+\mathcal{P}(\theta)
+\qquad
+\text{(kinetic energy)}\;\;-\;\;\text{(potential energy)}
+\]
+
+\[
+% \tau
+% =
+% \frac{d}{dt}\!\left(\frac{\partial \mathcal{L}}{\partial \dot{\theta}}\right)
+% -
+% \frac{\partial \mathcal{L}}{\partial \theta}
+% \qquad
+% \Rightarrow
+% \qquad
+\tau_i
+=
+\frac{d}{dt}\!\left(\frac{\partial \mathcal{L}}{\partial \dot{\theta}_i}\right)
+-
+\frac{\partial \mathcal{L}}{\partial \theta_i}
+% \]
+\qquad
+% \[
+\tau
+=
+M(\theta)\,\ddot{\theta}
++
+C(\theta,\dot{\theta})\,\dot{\theta}
++
+g(\theta)
+\]
+
+\[
+C(\theta,\dot{\theta})
+=
+\begin{bmatrix}
+C_{11}(\theta,\dot{\theta}) & \cdots & C_{1n}(\theta,\dot{\theta})\\
+\vdots & \ddots & \vdots\\
+C_{n1}(\theta,\dot{\theta}) & \cdots & C_{nn}(\theta,\dot{\theta})
+\end{bmatrix}
+% \]
+\qquad
+% \[
+C_{ij}(\theta,\dot{\theta})
+=
+\sum_{k=1}^{n}\Gamma_{ijk}(\theta)\,\dot{\theta}_k
+\]
+
+\[
+\Gamma_{ijk}(\theta)
+=
+\frac{1}{2}
+\left(
+\frac{\partial M_{ij}(\theta)}{\partial \theta_k}
++
+\frac{\partial M_{ik}(\theta)}{\partial \theta_j}
+-
+\frac{\partial M_{jk}(\theta)}{\partial \theta_i}
+\right)
+\]
+
+\[
+M(\theta)\in\mathbb{R}^{n\times n},
+\qquad
+M_{ij}(\theta)\ \text{is the }(i,j)\text{-th component of }M(\theta).
+\]
+}
+}
+
+\vspace{1pt}
+
+%========================
+% Jacobian rank + singularity / redundancy + ellipsoids
+%========================
+\sheetbox{
+{\fontsize{5.6}{6.0}\selectfont
+\setlength{\abovedisplayskip}{0.25pt}
+\setlength{\belowdisplayskip}{0.25pt}
+\setlength{\abovedisplayshortskip}{0.15pt}
+\setlength{\belowdisplayshortskip}{0.15pt}
+
+\[
+\textbf{Jacobian: }\\
+J \in \mathbb{R}^{m\times n},
+\qquad
+r = \mathrm{rank}(J)\le \min(m,n)
+\]
+\vspace{-2pt}
+\[
+n=\text{number of joints},\qquad m=\text{task-space dimension (planar (2D): m=3, 3D m= 6)}
+\]
+\vspace{-2pt}
+\[
+n<m:\ \text{tall, kinematically deficient;}
+\quad
+n=m:\ \text{square;}
+\quad
+n>m:\ \text{fat, redundant.}
+\]
+
+\[
+A = J J^{T},\quad
+v^{T}A^{-1}v = 1,\quad
+f^{T}Af = 1,\quad
+a_i^{(\mathrm{vel})} = \sqrt{\lambda_i},\quad
+a_i^{(\mathrm{for})} = \frac{1}{\sqrt{\lambda_i}}
+\]
+
+\[
+\text{vel: } \mu_1 = \sqrt{\frac{\lambda_{\max}}{\lambda_{\min}}}\;(=1\ \text{isotropic}),\quad
+\mu_2 = \frac{\lambda_{\max}}{\lambda_{\min}},\quad
+\mu_3 = \sqrt{\det(A)}, \text{force: } \mu_1,\mu_2,\frac{1}{\mu_3}
+\]
+\[
+\text{singularity:} \lambda_{\min}(A)=0 \Rightarrow
+a_{\min}^{(\mathrm{vel})}=0 \Rightarrow
+a_{\max}^{(\mathrm{for})}\to\infty,\text{hard: move/vel,\ easy: force}
+\]
+
+
+\vspace{1pt}
+
+{\fontsize{5.0}{5.4}\selectfont
+\setlength{\tabcolsep}{1.4pt}
+\renewcommand{\arraystretch}{1.00}
+\begin{tabular}{L{0.27\linewidth} C{0.2\linewidth} L{0.25\linewidth} L{0.3\linewidth}}
+\toprule
+\textbf{Case} & \textbf{Rank} &
+\textbf{Twist $v=J\dot{q}$} &
+\textbf{Wrench $\rightarrow \tau=J^{T} f$} \\
+\midrule
+Full task controllability &
+$r=m$ &
+any $v$ &
+no passive $f$\ $(\mathrm{Null}(J^{T})=\{0\})$ \\
+Singular / limited &
+$r<m$ &
+restricted $v$ &
+some passive $f$\ $(\dim \mathrm{Null}(J^{T})=m-r)$ \\
+Tall / underactuated, not singular &
+$m>n,\ r=n$ &
+restricted $v$\ $(\mathrm{Null}(J)=\{0\})$ &
+some passive $f$\ $(\dim \mathrm{Null}(J^{T})=m-n)$ \\
+Rank-deficient / singular (general) &
+$r<\min(m,n)$ &
+restricted $v$ + self-motion\ $(\mathrm{Null}(J)\neq\{0\},\ \dim \mathrm{Null}(J)=n-r)$ &
+some passive $f$\ $(\mathrm{Null}(J^{T})\neq\{0\},\ \dim \mathrm{Null}(J^{T})=m-r)$ \\
+Redundant, not singular &
+$n>m,\ r=m$ &
+any $v$ + self-motion\ $(\mathrm{Null}(J)\neq\{0\})$ &
+no passive $f$ \\
+% \bottomrule
+\end{tabular}
+}
+
+}
+}
+
+\vspace{1pt}
+
+%========================
+% Robotics problem types summary table (smaller font)
+%========================
+\sheetbox{
+{\fontsize{4.6}{5.0}\selectfont
+\setlength{\tabcolsep}{1.3pt}
+\renewcommand{\arraystretch}{1.00}
+
+\begin{tabular}{L{0.10\linewidth} L{0.12\linewidth} L{0.20\linewidth} L{0.22\linewidth} L{0.12\linewidth} L{0.18\linewidth}}
+% \toprule
+\textbf{Level} & \textbf{Type} & \textbf{Given $\rightarrow$ find} &
+\textbf{Key relation} & \textbf{Method} & \textbf{Why numerical} \\
+\midrule
+Pose & FK & $\theta \rightarrow T \in SE(3)$ &
+$T=\prod_{i=1}^n e^{[S_i]\theta_i} M$ (or DH) &
+Direct eval & None \\
+Pose & IK & $X \rightarrow \theta$ &
+$T(\theta)=X$ &
+Geometric or root-find/opt &
+Nonlinear, many-to-one \\
+Velocity & Vel FK & $\theta,\dot{\theta} \rightarrow V$ &
+$V=J(\theta)\dot{\theta}$ &
+Compute $J$, multiply & None \\
+Velocity & Vel IK & $\theta, V_d \rightarrow \dot{\theta}$ &
+$V_d=J(\theta)\dot{\theta}$ &
+$J^\dagger$, DLS, $J^T$ &
+$J$ non-square/singular \\
+Dynamics & Forward & $\theta_0,\dot{\theta}_0,\tau,F \rightarrow \ddot{\theta}$ &
+$\tau=M\ddot{\theta}+c+g+J^T F$ &
+ABA &
+Avoid forming/inverting $M$ \\
+Dynamics & Inverse & $\theta,\dot{\theta},\ddot{\theta},F \rightarrow \tau$ &
+Same &
+RNEA &
+Faster than explicit $M,c,g$ \\
+% \bottomrule
+\end{tabular}
+}
+}
+
+\end{minipage}
+\hfill
+\begin{minipage}[t]{0.49\textwidth}
+\vspace*{0pt}
+
+%========================
+% Block 1: Dynamical System -> State space + Stability class definition
+%========================
+\sheetbox{
+\textbf{Dynamical System $\rightarrow$ State space}
+\vspace{-2pt}
+\[
+\text{(Set): } x = x_1,\ \dot{x} = x_2,\ \dot{x}_1 = x_2,\ \ddot{x} = \dot{x}_2
+% \]
+% \vspace{-2pt}
+% \[
+\quad
+\text{(Eq) }
+\dot{x}=
+\begin{bmatrix}
+\dot{x}_1\\
+\dot{x}_2
+\end{bmatrix}
+=
+A
+\begin{bmatrix}
+x_1\\
+x_2
+\end{bmatrix}
++Bu
+\]
+
+% Use resizebox to fit width and tiny font inside math to reduce height
+{\tiny
+\[
+\resizebox{0.95\linewidth}{!}{$
+\begin{bmatrix}
+\dot{\theta}_{n\times 1}\\
+\ddot{\theta}_{n\times 1}
+\end{bmatrix}
+=
+\begin{bmatrix}
+\dot{\theta}_{n\times 1}\\
+-\,M^{-1}(\theta)\,C(\theta,\dot{\theta})\,\dot{\theta}
+-\,M^{-1}(\theta)\,G(\theta)
+\end{bmatrix}
++
+\begin{bmatrix}
+0_{n\times n}\\
+M^{-1}(\theta)
+\end{bmatrix}\tau_{n\times 1}
++
+\begin{bmatrix}
+0_{n\times m}\\
+-\,M^{-1}(\theta)\,J^{T}(\theta)
+\end{bmatrix}F^{\mathrm{tip}}_{m\times 1}
+$}
+\]
+}
+\vspace{5pt}
+% No negative vspace here to prevent overlap
+\textbf{Uniqueness:} Single trajectory from the point.\\
+Lipschitz quick check when $f$ differentiable in $x$ on a neighborhood:
+% No negative vspace here
+\[
+J(t,x) = \frac{\partial f}{\partial x}(t,x), \quad \|J(t,x)\| \le L
+\]
+\vspace{-1pt}
+\textbf{Equilibrium states:}
+% \vspace{-3pt}
+\[
+f(x_e)=0\ \text{for }\dot{x}=f(x),\quad x(t)=x_e,\ \forall t\ge 0
+\]
+\vspace{5pt}
+\textbf{Stability class definition for equilibrium}
+
+{\fontsize{6.0}{6.5}\selectfont
+\renewcommand{\arraystretch}{1.06}
+\begin{tabular}{L{0.28\linewidth} C{0.12\linewidth} C{0.26\linewidth} C{0.16\linewidth}}
+\toprule
+\textbf{Stability class} &
+\textbf{Stay close?} &
+\textbf{Independent of start time?} &
+\textbf{Convergence?}\\
+\midrule
+Stable (Lyapunov) & \cmark & \xmark & \xmark \\
+Uniformly stable & \cmark & \cmark & \xmark \\
+Asymptotically stable & \cmark &
+\xmark\ {\fontsize{5.8}{6.1}\selectfont (in general, time-varying)} &
+\cmark\ {\fontsize{5.8}{6.1}\selectfont (eventual)} \\
+Uniformly asymptotically stable (UAS) & \cmark & \cmark &
+\cmark\ {\fontsize{5.8}{6.1}\selectfont (uniform in $t-t_0$)} \\
+Exponentially stable & \cmark & \cmark &
+\cmark\ {\fontsize{5.8}{6.1}\selectfont (exponential)} \\
+\bottomrule
+\end{tabular}
+}
+
+\vspace{1pt}
+\textbf{Footer (column conditions)}
+\begin{itemize}
+  \item \textbf{Stay close:} $\forall \varepsilon>0,\ \exists \delta:\ \|x(t_0)\|\le \delta \Rightarrow \|x(t)\|\le \varepsilon,\ \forall t\ge t_0.$
+  \item \textbf{Independent of start time:} $\delta=\delta(\varepsilon)$ (no $t_0$ dependence).
+  \item \textbf{Convergence:}
+  \begin{itemize}
+    \item \textit{Eventual:} $\lim_{t\to\infty}\|x(t)\|=0.$
+    \item \textit{Uniform:} $\|x(t)\|\le \beta(\|x(t_0)\|,\, t-t_0),\ \beta\in\mathcal{KL}.$
+    \item \textit{Exponential:} $\|x(t)\|\le k e^{-\lambda(t-t_0)}\|x(t_0)\|.$
+  \end{itemize}
+\end{itemize}
+}
+}
+
+\vspace{1pt}
+
+%========================
+% Block: Stability classification via linearization
+%========================
+\sheetbox{
+\textbf{Stability classification via linearization}
+
+{\fontsize{6.0}{6.5}\selectfont
+\vspace{-8pt}
+\[
+\text{Linearize }\dot{x}=f(x)\text{ about }x=0;\ \text{define }\ 
+A=\left.\frac{\partial f}{\partial x}\right|_{x=0}.
+\]
+\vspace{-8pt}
+\begin{itemize}
+  \item $\lambda$: eigenvalue of $A$;\ $\Re(\lambda)$: real part of $\lambda$.
+  \item \textbf{Locally exponentially stable} if $\Re(\lambda_i(A))<0$ for all $i$.
+  \item \textbf{Unstable} if $\Re(\lambda_i(A))>0$ for any $i$.
+  \item \textbf{Inconclusive} if some $\Re(\lambda_i(A))=0$ while all others have $\Re(\lambda(A))<0$.
+\end{itemize}
+}
+}
+
+\vspace{1pt}
+
+%========================
+% Block 2: Stability classification without finding trajectories + LaSalle steps
+%========================
+\sheetbox{
+\textbf{Stability classification without finding trajectories}
+
+{\fontsize{6.0}{6.5}\selectfont
+\renewcommand{\arraystretch}{1.06}
+\begin{tabular}{L{0.23\linewidth} L{0.10\linewidth} L{0.22\linewidth} L{0.28\linewidth}}
+\toprule
+\textbf{Type} &
+\textbf{Scope} &
+\textbf{Conditions on $V(x)$} &
+\textbf{Conditions on $\dot{V}(x)$}\\
+\midrule
+Stable & Local & PD & NSD \\
+Asymptotically stable & Local & PD & ND \\
+Asymptotically stable (LaSalle) & Local & PD & NSD + invariant-set condition \\
+Exponentially stable & Local & Quadratic Bound & Quadratic ND \\
+Asymptotically stable & Global & PD + radially unbounded & ND \\
+Exponentially stable & Global & Quadratic Bound (global) & Quadratic ND (global) \\
+\bottomrule
+\end{tabular}
+}
+
+\vspace{1pt}
+\textbf{Footer / definitions}
+\begin{itemize}
+  \item \textbf{PD:} $V(0)=0,\ V(x)>0$ for $x\ne 0$.
+  \item \textbf{NSD:} $\dot{V}(x)\le 0$.
+  \item \textbf{ND:} $\dot{V}(0)=0,\ \dot{V}(x)<0$ for $x\ne 0$.
+  \item \textbf{Quadratic Bound (local):} $\alpha_1\|x\|^2 \le V(x)\le \alpha_2\|x\|^2$ near the origin.
+  \item \textbf{Quadratic ND (local):} $\dot{V}(x)\le -\alpha_3\|x\|^2$ near the origin.
+  \item \textbf{``Global'' versions} mean the same inequalities hold for all $x$.
+  \item \textbf{Radially unbounded:} $V(x)\to\infty$ as $\|x\|\to\infty$.
+  \item \textbf{Computing $\dot{V}$:}
+  \[
+    \dot{V}=\frac{dV}{dt}=\frac{\partial V}{\partial x}\frac{dx}{dt}
+    =\frac{\partial V}{\partial x}f(x).
+  \]
+  \item If NONE of these conditions are satisfied, then Nothing can be concluded about stability.
+  \item The above theorem only provides a sufficient stability conditions.
+\end{itemize}
+\hline
+\vspace{0.5pt}
+\textbf{Invariant-set condition (LaSalle) --- follow steps:}
+\vspace{-1pt}
+\[
+\begin{aligned}
+&\Omega_c = \{ x : V(x) \le c \},\quad \dot V \le 0 \;\;\text{compact, positively invariant set}\\
+&E = \{ x \in \Omega : \dot V(x) = 0 \}\\
+&M = \text{largest positively invariant subset of } E\\
+&\text{If } E : h(x) = 0,\ \text{impose on } E\ \dot h(x) = \nabla h(x)\,f(x) = 0\\
+&\text{Then } x(0) \in \Omega \Rightarrow x(t) \to M.\ \text{If } M = \{0\},\ \text{the origin is asymptotically stable.}
+\end{aligned}
+\]
+
+
+}
+}
+
+
+\vspace{1pt}
+
+%========================
+% Adjoint / properties in 2-column x 3-row style (like attachment)
+%========================
+\sheetbox{
+{\fontsize{5.0}{5.4}\selectfont
+\setlength{\tabcolsep}{6pt}
+\renewcommand{\arraystretch}{1.15}
+
+\newcommand{\adjcell}[1]{\fbox{\ensuremath{\displaystyle #1}}}
+
+\begin{center}
+\begin{tabular}{c c}
+\adjcell{
+\mathrm{Ad}_{T_{sb}}
+=
+\begin{bmatrix}
+R_{sb} & 0_{3\times 3} \\
+[p_{sb}]_\times R_{sb} & R_{sb}
+\end{bmatrix}
+}
+&
+\adjcell{
+\mathrm{Ad}_{T_{sb}^{-1}}
+=
+\begin{bmatrix}
+R_{sb}^{\top} & 0 \\
+-\,R_{sb}^{\top}[p_{sb}]_\times & R_{sb}^{\top}
+\end{bmatrix}
+}
+\\[2pt]
+\adjcell{
+\big(\mathrm{Ad}_{T}\big)^{-1} = \mathrm{Ad}_{T^{-1}}
+}
+&
+\adjcell{
+\widehat{\mathrm{Ad}_{T_{sb}}\mathcal{V}}
+=
+T_{sb}\,\hat{\mathcal{V}}\,T_{sb}^{-1}
+}
+\\[2pt]
+\adjcell{
+\mathrm{Ad}_{T_1}\big(\mathrm{Ad}_{T_2}\mathcal{V}\big)
+=
+\mathrm{Ad}_{(T_1 T_2)}\mathcal{V}
+}
+&
+\adjcell{
+F_c
+=
+\mathrm{Ad}^{\top}_{T_{B_1 c}}\,F_{B_1}
++
+\mathrm{Ad}^{\top}_{T_{B_2 c}}\,F_{B_2}
+}
+\end{tabular}
+\end{center}
+\[
+x\in\{V,S,\xi,\dot V\}:\quad
+x_b=\mathrm{Ad}_{T_{sb}^{-1}}\,x_s
+\;\Longleftrightarrow\;
+[x_b]_\times=T_{sb}^{-1}\,[x_s]_\times\,T_{sb}.
+\]
+}
+}
+
+
+\end{minipage}
+
+\end{document}
